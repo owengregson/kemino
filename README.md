@@ -3,6 +3,7 @@
 </p>
 <h1 align="center">kemino</h1>
 <p>An Instagram live simulator with 1:1 replica UI, logistic viewer growth, artificial comments, and more.</p>
+<p>Try a live demo out <a href="https://mit.ong/kemino/">here!</a></p>
 <p>This is a project inspired by a YouTube video I saw of someone comparing their treatment at parties when they had an Instagram live vs. when they did not. It was obvious through the video that this perceived sense of "fame" led to better treatment (especially at parties.) After some short research, I found that this project had been made before as an iOS application, however, most of the products were made very poorly as a cash grab and required payment for most of the features. Hence, I was inspired to create this project.</p>
 <p>⚠️ <strong>As always, I am not liable for any misuse of this simulator  such as using it to deceive or trick others with malicious intent. My software is provided for educational purposes only.</strong></p>
 <p>The Live Simulator features a 1:1 replica of the Instagram creator UI. In addition, it boasts the following features:</p>
