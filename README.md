@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/images/kemino-logo.png" width="112" height="138">
+  <img src="./assets/images/kemino-logo.png" width="112" height="112">
 </p>
 <h1 align="center">kemino</h1>
 <p>An Instagram live simulator with 1:1 replica UI, logistic viewer growth, artificial comments, and more.</p>
