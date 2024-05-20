@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>kemino</title>
+		<!-- icon & metadata -->
+		<link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+		<link rel="apple-touch-icon" href="./assets/images/favicon.png" />
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="theme-color" content="#" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="google" content="notranslate" />
+		<meta name="description" content="kemino" />
+		<meta name="keywords" content="kemino" />
+		<meta name="author" content="kemino" />
+		<!-- viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700"
+			rel="stylesheet"
+		/>
+		<style type="text/css">
+			@font-face {
+				font-family: "San Francisco";
+				src: url("./assets/fonts/SF-Pro-Display-Regular.otf");
+			}
+			@font-face {
+				font-family: "San Francisco Bold";
+				src: url("./assets/fonts/SF-Pro-Display-Semibold.otf");
+			}
+		</style>
+		<!-- styles -->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="./assets/css/animation.min.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+		<!-- scripts -->
+
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+		<script
+			type="text/javascript"
+			src="./assets/js/jquery-337.min.js"
+		></script>
+		<script type="text/javascript" src="./assets/js/ac.min.js"></script>
+		<script type="text/javascript" src="./assets/js/user.js"></script>
+		<script type="text/javascript" src="./assets/js/kemino.js"></script>
+	</head>
+	<body>
+		<div id="preloader">
+			<div class="preloader-container">
+				<div class="loading">
+					<div class="loading-text" id="loadingStatus">kemino</div>
+					<div class="loading-spinner"></div>
+				</div>
+			</div>
+		</div>
+		<div id="config-screen">
+			<div class="config-container">
+				<h2>kemino</h2>
+				<form id="config-form" novalidate>
+					<label for="username">Username</label>
+					<input
+						type="text"
+						id="username"
+						name="username"
+						maxlength="10"
+						autocomplete="username"
+						autocapitalize="off"
+						autofocus
+						placeholder="Enter username..."
+						required
+					/>
+					<span id="username-error" class="error-message"></span>
+
+					<div class="profile-picture-section">
+						<div class="profile-picture-labels">
+							<label for="profile-picture">Profile Picture</label>
+							<button type="button" id="upload-button">
+								Choose File
+							</button>
+						</div>
+						<div id="profile-picture-preview"></div>
+						<input
+							type="file"
+							id="profile-picture"
+							name="profile-picture"
+							accept="image/*"
+							required
+						/>
+					</div>
+
+					<label for="max-viewer-count">Peak Viewers</label>
+					<input type="number" id="max-viewer-count"
+					name="max-viewer-count" maxlength="6" autocomplete="off"
+					autocapitalize="off" placeholder="Enter peak viewers..."/
+					pattern="[0-9]*" oninput="javascript: if (this.value.length
+					> this.maxLength) this.value = this.value.slice(0,
+					this.maxLength);" min="1500" max="500000" value="1500"
+					required />
+
+					<div class="buttons">
+						<button type="submit" id="ok-button">Begin</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="camera-container">
+			<video id="camera" autoplay playsinline></video>
+		</div>
+		<div id="overlay">
+			<div class="button-grid">
+				<button
+					class="grid-button"
+					data-button="exclamatory"
+					style="background-color: #ffa500"
+				>
+					Exclamatory<br />
+					<span>😡😠😂</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="agree"
+					style="background-color: #32cd32"
+				>
+					Agree<br />
+					<span>👍</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="disagree"
+					style="background-color: #ff4500"
+				>
+					Disagree<br />
+					<span>😡</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="compliment-girl"
+					style="background-color: #ff69b4"
+				>
+					Compliments for Girl<br />
+					<span>👧</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="compliment-guy"
+					style="background-color: #1e90ff"
+				>
+					Compliments for Boy<br />
+					<span>👦</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="compliment-couple"
+					style="background-color: #9370db"
+				>
+					Compliments for Couple<br />
+					<span>👫</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="go-away"
+					style="background-color: #ff1493"
+				>
+					Tell him/her go away<br />
+					<span>😡</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="laughing"
+					style="background-color: #800080"
+				>
+					Laugh in chat<br />
+					<span>😂</span>
+				</button>
+				<button
+					class="grid-button"
+					data-button="question"
+					style="background-color: #3adfc3"
+				>
+					Questioning<br />
+					<span>❓</span>
+				</button>
+			</div>
+			<div id="comments">
+				<div id="padding"></div>
+			</div>
+			<div id="reactions"></div>
+			<div id="bottom">
+				<div id="commentsButton">
+					<img
+						id="commentsButtonThreeDots"
+						src="./assets/images/add-elipsis.png"
+						class="icon"
+						alt="Elipsis"
+					/>
+				</div>
+				<div id="videoPlusIcon">
+					<img
+						src="./assets/images/add-createvideo.png"
+						class="icon"
+						alt="Video Plus"
+					/>
+				</div>
+				<div id="addPeopleIcon">
+					<img
+						src="./assets/images/add-person.png"
+						class="icon"
+						alt="Add People"
+					/>
+				</div>
+				<div id="questionIcon">
+					<img
+						src="./assets/images/add-comment.png"
+						class="icon"
+						alt="Questions"
+					/>
+				</div>
+				<div id="airplaneIcon">
+					<img
+						src="./assets/images/add-airplane.png"
+						class="icon"
+						alt="Airplane"
+					/>
+				</div>
+			</div>
+			<div id="top">
+				<div id="top-left">
+					<div id="activeUser">
+						<div id="userIcon">
+							<img
+								src="./assets/images/profile.png"
+								alt="User Icon"
+							/>
+						</div>
+						<div id="userName"></div>
+						<div id="userDropDownIcon">
+							<img
+								src="./assets/images/add-arrow.png"
+								class="icon"
+								id="userDropDownImage"
+								alt="User Drop Down"
+							/>
+						</div>
+					</div>
+				</div>
+				<div id="top-right">
+					<div id="liveIndicator">LIVE</div>
+					<div id="viewerCount">
+						<div id="viewerCountIcon">
+							<img
+								src="./assets/images/add-viewer.png"
+								class="viewerCountIcon"
+								alt="Viewer Count"
+							/>
+						</div>
+						<span id="viewerCountNumber">0</span>
+					</div>
+					<div id="closeStreamIcon">
+						<img
+							src="./assets/images/add-close.png"
+							class="icon"
+							alt="Close Stream"
+						/>
+					</div>
+				</div>
+			</div>
+			<div id="right">
+				<div id="imageIcon">
+					<img
+						src="./assets/images/add-photo.png"
+						class="icon"
+						alt="Image"
+					/>
+				</div>
+				<div id="microphoneIcon">
+					<img
+						src="./assets/images/add-microphone.png"
+						class="icon"
+						alt="Microphone"
+					/>
+				</div>
+				<div id="cameraIcon">
+					<img
+						src="./assets/images/add-video.png"
+						class="icon"
+						alt="Camera"
+					/>
+				</div>
+				<div id="flipCameraIcon">
+					<img
+						src="./assets/images/add-flip.png"
+						class="icon"
+						alt="Flip Camera"
+					/>
+				</div>
+				<div id="filtersIcon">
+					<img
+						src="./assets/images/add-smiley.png"
+						class="icon"
+						alt="Filters"
+					/>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,535 @@
+:root {
+	/* Palette */
+	--palette-1: rgb(254, 218, 117);
+	--palette-2: rgb(250, 126, 30);
+	--pallete-3: rgb(254, 1, 102);
+	--pallete-4: rgb(150, 47, 191);
+	--palette-5: rgb(79, 91, 213);
+
+	/* UI */
+	--ui-dark-bg: #1a1a2e;
+	--ui-dark: rgb(43, 43, 74);
+	--ui-light: rgb(249, 249, 249);
+	--ui-border: rgb(61, 61, 92);
+	--ui-transparent: rgba(0, 0, 0, 0.4);
+
+	/* Text */
+	--text-dark: rgb(33, 33, 33);
+	--text-white: rgb(255, 255, 255);
+	--text-light: rgb(224, 224, 224);
+	--text-muted: rgb(176, 176, 176);
+	--text-link: rgb(79, 91, 213);
+	--text-success: rgb(40, 167, 69);
+	--text-warning: rgb(255, 193, 7);
+	--text-danger: rgb(255, 77, 77);
+	--text-info: rgb(23, 162, 184);
+
+	/* Background */
+	--bg-dark: rgb(0, 0, 0);
+	--bg-light: rgb(229, 229, 229);
+
+	--camera-height: 87%;
+}
+
+body {
+	font-family: "San Francisco", "Poppins", Tahoma, sans-serif;
+	font-size: 1rem;
+	line-height: 1.6;
+	letter-spacing: 1.5px;
+	color: var(--text-dark);
+	background-color: var(--bg-dark);
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--ui-dark);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: auto;
+	z-index: 1000;
+	transition: opacity 0.4s ease-in-out;
+}
+
+#preloader-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#config-screen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 10;
+	transition: opacity 1s ease-in-out, background-color 1s ease-in-out;
+}
+
+.config-container {
+	background: var(--ui-dark-bg);
+	padding: 2rem;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	width: 300px;
+	color: var(--text-white);
+}
+
+.config-container h2 {
+	font-family: "San Francisco Bold", sans-serif;
+	margin-bottom: 1rem;
+	color: var(--text-light);
+}
+
+.config-container label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	color: var(--text-muted);
+}
+
+.config-container input[type="text"],
+.config-container input[type="number"] {
+	width: 100%;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	border: 1px solid var(--ui-border);
+	border-radius: 5px;
+	font-size: 1rem;
+	background: var(--ui-dark);
+	color: var(--text-light);
+}
+
+/* Add this to your existing CSS */
+
+.loading {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	color: var(--text-white);
+	font-family: "San Francisco", sans-serif;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.loading-text {
+	margin-bottom: 20px;
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.loading-spinner {
+	width: 50px;
+	height: 50px;
+	border: 5px solid rgba(255, 255, 255, 0.3);
+	border-top: 5px solid var(--text-white);
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+.error-message {
+	color: var(--text-danger);
+	font-size: 0.8rem;
+	display: none;
+}
+
+.profile-picture-section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.profile-picture-labels {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-right: 10px;
+}
+
+#upload-button {
+	background-color: #6b00b6;
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+#profile-picture-preview {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: var(--ui-dark);
+	background-size: cover;
+	background-position: center;
+}
+
+#profile-picture {
+	display: none;
+}
+
+.custom-file-upload input[type="file"] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+#cancel-button,
+#ok-button {
+	font-size: 1.2rem;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 45%;
+}
+
+#cancel-button {
+	background-color: #666;
+	color: #fff;
+}
+
+#ok-button {
+	background: linear-gradient(45deg, #6b00b6, #8c03fc);
+	color: #fff;
+}
+
+#camera-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--camera-height);
+}
+
+#camera {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	object-fit: cover;
+	transform: scaleX(-1);
+	filter: saturate(1.09) brightness(1.06) contrast(1.06);
+}
+
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start; /* Aligns items to the start vertically */
+	align-items: flex-start;
+	pointer-events: none;
+}
+
+.button-grid-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.button-grid {
+	margin-top: 45vh; /* 10% down from the top of the page */
+	display: none;
+	grid-template-columns: repeat(3, 1fr);
+	opacity: 0;
+	gap: 5px; /* Adjust the gap if necessary */
+	max-width: 800px; /* Max width to ensure it fits well on larger screens */
+	pointer-events: auto;
+	z-index: 99999;
+}
+
+.grid-button {
+	padding: 10px; /* Reduce padding to fit better */
+	font-size: 1rem;
+	font-weight: bold;
+	border: none;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+	transition: transform 0.2s;
+	width: 100%; /* Ensure buttons take full column width */
+	aspect-ratio: 1; /* Maintain a square aspect ratio */
+	box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.grid-button span {
+	display: block;
+	margin-top: 10px;
+	font-size: 1.5rem;
+}
+
+.grid-button:hover {
+	transform: scale(1.05);
+}
+
+#comments {
+	position: absolute;
+	bottom: calc(100% - var(--camera-height) + 1%);
+	left: 10px;
+	width: calc(100% - 20px);
+	max-height: calc(100% - var(--camera-height) + 18.5%);
+	overflow-y: scroll;
+	padding-right: 10px;
+	pointer-events: none;
+	mask-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 1) 25%
+	);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 1) 25%
+	); /* For Safari */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#comments::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#comments {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.comment {
+	display: flex;
+	align-items: center; /* Center items vertically */
+	font-size: 0.8rem;
+	margin-bottom: 10px;
+}
+
+.comment-user-icon {
+	margin-right: 10px;
+	display: flex; /* Ensure the icon aligns vertically within its container */
+	align-items: center;
+}
+
+.comment-icon {
+	width: 38px !important;
+	height: 38px !important;
+	border-radius: 50%;
+}
+
+.comment-text {
+	color: var(--text-light);
+	display: flex;
+	flex-direction: column; /* Stack username and text vertically */
+}
+
+.comment-username {
+	font-family: "San Francisco Bold";
+	margin-right: 5px;
+	display: block;
+}
+
+#reactions {
+	position: absolute;
+	bottom: calc(100% - var(--camera-height) - 1%);
+	right: 0%;
+	width: calc(50%);
+	height: 50%;
+	pointer-events: none;
+	overflow: visible;
+	mask-image: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 1) 30%
+	);
+	-webkit-mask-image: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 1) 30%
+	);
+}
+
+.reaction {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 40px;
+	height: 40px;
+	font-size: 1.4rem;
+	animation: reaction-fly 2.5s linear;
+	pointer-events: none;
+}
+
+#bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - var(--camera-height) - 3%);
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: var(--bg-dark);
+	z-index: 1;
+	top: var(
+		--camera-height
+	); /* Position it directly below the camera container */
+}
+
+#bottom div,
+#top div,
+#right div {
+	pointer-events: auto;
+}
+
+#bottom div img,
+#top div img,
+#right div img {
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.icon {
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+}
+
+#top {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	right: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#top-left {
+	display: flex;
+	align-items: center;
+}
+
+#activeUser {
+	display: flex;
+	align-items: center;
+}
+
+#userIcon img {
+	width: 36px !important;
+	height: 36px !important;
+	border-radius: 50%;
+}
+
+#userName {
+	color: var(--text-light);
+	margin-left: 10px;
+	margin-right: 8px;
+}
+
+#userDropDownImage {
+	width: 15px !important;
+	height: auto !important;
+}
+
+#top-right {
+	display: flex;
+	align-items: center;
+}
+
+#liveIndicator {
+	color: var(--text-light);
+	background-color: var(--pallete-3);
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	margin-right: 10px;
+}
+
+#viewerCount {
+	display: flex; /* Use flexbox to align items horizontally */
+	align-items: center; /* Center items vertically */
+	background-color: var(--ui-transparent);
+	color: var(--text-light);
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	margin-right: 10px;
+}
+
+#viewerCountIcon img.viewerCountIcon {
+	height: 0.8em; /* Set the icon height to match the text height */
+	width: 0.95em; /* Maintain aspect ratio */
+	margin-right: 7px; /* Add some spacing between the icon and the text */
+	margin-bottom: 3px; /* Adjust the vertical alignment */
+}
+
+#right {
+	position: absolute;
+	top: 175px;
+	right: 15px;
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#right div {
+	margin: 10px 0;
+}
+
+#commentsButton {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	width: 50%;
+	height: 45px;
+	border: 1px solid var(--text-muted);
+	border-radius: 25px;
+	padding-left: 4%;
+	background-color: transparent;
+	color: var(--text-light);
+	cursor: pointer;
+}
+
+#commentsButton::before {
+	content: "Comment";
+	font-size: 16px;
+}
+
+#commentsButtonThreeDots {
+	position: absolute;
+	right: 10px;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	padding-right: 10px;
+	align-items: center;
+	justify-content: center;
+}
